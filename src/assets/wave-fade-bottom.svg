@@ -1,0 +1,11 @@
+<!-- wave-fade-bottom.svg -->
+<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="fadeToWhite" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0f0ff"/>
+      <stop offset="80%" stop-color="white" stop-opacity="1"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#fadeToWhite)" d="M0,160 C360,260 1080,40 1440,160 L1440,320 L0,320 Z" />
+</svg>
