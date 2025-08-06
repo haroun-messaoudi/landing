@@ -4,7 +4,13 @@ import {
   ChartBarIcon,
   BoltIcon,
   CubeIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  WrenchScrewdriverIcon,
+  PencilSquareIcon,
+  ShoppingBagIcon,
+  CursorArrowRaysIcon,
+  BoldIcon,
+  PencilIcon
 } from '@heroicons/vue/24/outline' // use outline for a clean bordered look
 import { ArrowDownIcon } from '@heroicons/vue/24/solid'
 import { PhoneIcon, DevicePhoneMobileIcon } from '@heroicons/vue/24/solid'
@@ -14,8 +20,8 @@ import { ref } from 'vue'
 
 const faqs = ref([
   {
-    question: 'Is this suitable for someone without coding knowledge?',
-    answer: 'Absolutely! Our service is fully managed. You focus on your business—we’ll handle the tech.',
+    question: 'Will I be able to manage the site myself?',
+    answer: 'Yes, the admin dashboard is simple and built for non-technical users to update products, track orders, and run promotions.',
     open: false
   },
   {
@@ -24,13 +30,13 @@ const faqs = ref([
     open: false
   },
   {
-    question: 'Can I connect my Instagram products?',
-    answer: 'Yes! We specialize in converting your Instagram catalog into a high-converting storefront.',
+    question: 'Can I connect my delivery service like Yalidine or others?',
+    answer: 'Yes — orders can be forwarded to your delivery provider like Yalidine, Zr express, or others.',
     open: false
   },
   {
-    question: 'Will I be able to manage the site myself?',
-    answer: 'Yes, the admin dashboard is simple and built for non-technical users to update products, track orders, and run promotions.',
+    question: 'What does it cost to get my eShop?',
+    answer: 'Prices vary depending on features, but we keep things affordable and transparent. Message us and we’ll give you a fast, no-pressure quote.',
     open: false
   }
 ])
@@ -157,7 +163,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="bg-white text-gray-900 scroll-smooth">
+  <main class="bg-white text-gray-900 scroll-smooth overflow-x-hidden max-w-screen">
     <!-- Hero -->
     <header class="relative overflow-hidden bg-white">
     <!-- Brand Top Bar -->
@@ -175,15 +181,21 @@ onMounted(() => {
 
       <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-8 md:p-16">
         <section class="flex justify-center md:justify-end">
-          <img src="./assets/example-shop.jpeg" alt="Example eShop preview"
-            class="w-full max-w-md rounded-3xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105">
+          <div class="w-full max-w-md aspect-w-4 aspect-h-3">
+            <img
+              src="./assets/example-shop.jpeg"
+              alt="Example eShop preview"
+              loading="lazy"
+              class="w-full h-full object-cover rounded-3xl shadow-2xl transition-transform duration-500 hover:scale-105"
+            />
+          </div>
         </section>
 
         <section class="flex flex-col gap-6">
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-            <span>Make Your </span>
-            <span class="text-blue-600">Online Presence</span>
-            <span> Unforgettable</span>
+            <span>Build a Real </span>
+            <span class="text-blue-600">Online Presence</span><br>
+            <span>That Turns Clicks Into Customers</span>
           </h1>
           <p class="text-lg text-gray-500 max-w-md">
             Get a tailor-made eShop website delivered in record time, optimized for speed and designed to convert your Instagram followers into loyal customers.
@@ -217,14 +229,14 @@ onMounted(() => {
             <p class="text-gray-600">Pages load in under 1 second, reducing bounce rates and maximizing sales.</p>
           </div>
           <div class="feature-card flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg">
-            <CubeIcon class="w-12 h-12 text-blue-600 mb-4" />
-            <h3 class="text-xl font-semibold mb-2">Fully Responsive</h3>
-            <p class="text-gray-600">Perfect on desktop, tablet, or mobile—shop from anywhere.</p>
+            <PencilSquareIcon class="w-12 h-12 text-blue-600 mb-4" />
+            <h3 class="text-xl font-semibold mb-2">Easy to Update</h3>
+            <p class="text-gray-600">No tech skills needed — update your products and content anytime in just a few clicks.</p>
           </div>
           <div class="feature-card flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg">
-            <ChartBarIcon class="w-12 h-12 text-blue-600 mb-4" />
-            <h3 class="text-xl font-semibold mb-2">Scalable & SEO-Ready</h3>
-            <p class="text-gray-600">Grow with confidence—SEO-optimized and built to scale.</p>
+            <ShoppingBagIcon class="w-12 h-12 text-blue-600 mb-4" />
+            <h3 class="text-xl font-semibold mb-2">Shopper-Friendly Design </h3>
+            <p class="text-gray-600">From smooth scrolling to clear product displays, your shop gives customers an easy, enjoyable way to browse and place orders.</p>
           </div>
         </div>
       </div>
@@ -283,30 +295,33 @@ onMounted(() => {
 
         <div class="lg:w-1/2 client-text">
             <h2 class="text-3xl md:text-4xl font-bold leading-snug mb-6">
-            A Better Shopping Experience<br>
-            Built for Your Customers
+              A Better Shopping Experience<br>
+              Built for Your Customers
             </h2>
+
             <div class="space-y-4 mb-6">
-            <div class="flex items-start gap-4">
+              <div class="flex items-start gap-4">
                 <CheckCircleIcon class="w-6 h-6 text-blue-600 shrink-0" />
                 <p class="text-gray-700 leading-relaxed">Fast page loads and smooth navigation</p>
-            </div>
-            <div class="flex items-start gap-4">
+              </div>
+              <div class="flex items-start gap-4">
                 <CheckCircleIcon class="w-6 h-6 text-blue-600 shrink-0" />
                 <p class="text-gray-700 leading-relaxed">Mobile-first design for shopping on the go</p>
-            </div>
-            <div class="flex items-start gap-4">
+              </div>
+              <div class="flex items-start gap-4">
                 <CheckCircleIcon class="w-6 h-6 text-blue-600 shrink-0" />
-                <p class="text-gray-700 leading-relaxed">Secure and simple checkout process</p>
-            </div>
-            <div class="flex items-start gap-4">
+                <p class="text-gray-700 leading-relaxed">Simple and intuitive ordering process</p>
+              </div>
+              <div class="flex items-start gap-4">
                 <CheckCircleIcon class="w-6 h-6 text-blue-600 shrink-0" />
-                <p class="text-gray-700 leading-relaxed">Personalized promotions and offers</p>
+                <p class="text-gray-700 leading-relaxed">Easy access to complete product details</p>
+              </div>
             </div>
-            </div>
+
             <p class="text-gray-600">
-            Give your customers a polished, trustworthy experience that keeps them coming back—just like their favorite apps.
+              Give your customers a polished, trustworthy experience that keeps them coming back—just like their favorite apps.
             </p>
+
         </div>
     </section>
         <!-- FAQ Section -->
@@ -344,9 +359,14 @@ onMounted(() => {
                     </svg>
                     </button>
 
-                    <div v-if="faq.open" class="px-6 pb-4 text-gray-600">
-                    {{ faq.answer }}
-                    </div>
+                    <Transition
+                      name="faq"
+                      mode="out-in"
+                    >
+                      <div v-if="faq.open" class="px-6 pb-4 text-gray-600">
+                        {{ faq.answer }}
+                      </div>
+                    </Transition>
                 </div>
             </div>
         </div>
@@ -380,7 +400,7 @@ onMounted(() => {
             </div>
             <div class="text-left">
                 <p class="text-sm text-gray-500">Call Us</p>
-                <p class="font-semibold text-gray-800">+213 699 99 99 99</p>
+                <p class="font-semibold text-gray-800">+213 675 98 69 88</p>
             </div>
             </a>
 
@@ -408,7 +428,7 @@ onMounted(() => {
     </section>
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 text-center text-sm text-gray-500 py-6">
-    <p>&copy; {{ new Date().getFullYear() }} YourBrand. All rights reserved.</p>
+    <p>&copy; {{ new Date().getFullYear() }} Optivance Dz. All rights reserved.</p>
     </footer>
   </main>
   
@@ -420,6 +440,22 @@ onMounted(() => {
 }
 .faq-content {
   overflow: hidden;
+}
+.faq-enter-active, .faq-leave-active {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.faq-enter-from, .faq-leave-to {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-4px);
+}
+
+.faq-enter-to, .faq-leave-from {
+  opacity: 1;
+  max-height: 500px; /* Max expected height */
+  transform: translateY(0);
 }
 @keyframes bounce {
   0%, 100% {
