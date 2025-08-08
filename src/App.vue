@@ -245,23 +245,54 @@ function scrollToFeatures() {
   const el = document.getElementById('features')
   el && el.scrollIntoView({ behavior: 'smooth' })
 }
-// function beforeEnter(el) {
-//   el.style.maxHeight = '0px'
-//   el.style.opacity = '0'
-//   el.style.overflow = 'hidden'
-// }
 
-// function enter(el) {
-//   el.style.transition = 'max-height 0.3s ease, opacity 0.3s ease'
-//   el.style.maxHeight = '300px' // Large enough for all FAQ answers
-//   el.style.opacity = '1'
-// }
+import {nextTick} from 'vue'
 
-// function leave(el) {
-//   el.style.transition = 'max-height 0.3s ease, opacity 0.3s ease'
-//   el.style.maxHeight = '0px'
-//   el.style.opacity = '0'
-// }
+const faqAnswer = ref(null)
+
+function beforeEnter(el) {
+  el.style.height = '0'
+  el.style.opacity = '0'
+}
+
+function enter(el, done) {
+  nextTick(() => {
+    const height = el.scrollHeight
+    el.style.transition = 'height 0.4s ease, opacity 0.4s ease'
+    el.style.height = height + 'px'
+    el.style.opacity = '1'
+    el.addEventListener('transitionend', (e) => {
+      if (e.propertyName === 'height') {
+        el.style.height = 'auto'
+        done()
+      }
+    }, { once: true })
+  })
+}
+
+function leave(el, done) {
+  // Set the current height explicitly first
+  el.style.height = el.scrollHeight + 'px'
+  el.style.transition = 'none' // Remove transition temporarily
+  
+  // Force a repaint to ensure the height is set
+  void el.offsetHeight
+  
+  // Now add transition and animate to 0
+  el.style.transition = 'height 0.4s ease, opacity 0.4s ease'
+  
+  // Use requestAnimationFrame to ensure the transition applies properly
+  requestAnimationFrame(() => {
+    el.style.height = '0'
+    el.style.opacity = '0'
+  })
+
+  el.addEventListener('transitionend', (e) => {
+    if (e.propertyName === 'height') {
+      done()
+    }
+  }, { once: true })
+}
 onMounted(() => {
   gsap.from('.scroll-down-icon', {
     y: -10,
@@ -352,11 +383,13 @@ onMounted(() => {
         start: 'top 90%',
     }
     })
+    // ✅ Fixes the first-scroll issue
+    ScrollTrigger.refresh()
 })
 </script>
 
 <template>
-  <main class="bg-white text-gray-900 scroll-smooth overflow-x-hidden max-w-screen">
+  <main class="bg-white text-gray-900 scroll-smooth max-w-screen">
     <!-- Hero -->
     <header class="relative overflow-hidden bg-white">
     <!-- Brand Top Bar -->
@@ -428,7 +461,7 @@ onMounted(() => {
     </header>
 
     <!-- Features Section -->
-    <section id="features" class="relative py-24 px-8 md:px-16 bg-white overflow-visible">
+    <section id="features" class="relative py-24 px-8 md:px-16 bg-white overflow-hidden">
     <!-- Top Fade Background -->
     <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-blue-100 to-transparent z-10 pointer-events-none"></div>
 
@@ -579,8 +612,12 @@ onMounted(() => {
               </svg>
             </button>
 
-            <Transition name="faq">
-              <div v-if="faq.open" class="px-6 pb-4 text-gray-600">
+            <Transition
+              @before-enter="beforeEnter"
+              @enter="enter"
+              @leave="leave"
+            >
+              <div v-if="faq.open" ref="faqAnswer" class="px-6 text-gray-600 overflow-hidden">
                 {{ faq.answer }}
               </div>
             </Transition>
@@ -659,22 +696,7 @@ onMounted(() => {
 .faq-content {
   overflow: hidden;
 }
-.faq-enter-active, .faq-leave-active {
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
 
-.faq-enter-from, .faq-leave-to {
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(-4px);
-}
-
-.faq-enter-to, .faq-leave-from {
-  opacity: 1;
-  max-height: 500px; /* Max expected height */
-  transform: translateY(0);
-}
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -683,4 +705,5 @@ onMounted(() => {
     transform: translateY(-8px);
   }
 }
+
 </style>
