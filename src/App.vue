@@ -389,7 +389,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="bg-white text-gray-900 scroll-smooth max-w-screen overflow-x-hidden">
+  <main class="bg-white text-gray-900 scroll-smooth max-w-screen ">
     <!-- Hero -->
     <header class="relative overflow-hidden bg-white">
     <!-- Brand Top Bar -->
@@ -494,7 +494,7 @@ onMounted(() => {
     </section>
 
     <!-- Owner-Focused Section -->
-    <section class="relative py-16 px-8 md:px-16 flex flex-col lg:flex-row items-center gap-12">
+    <section class="relative py-16 px-8 md:px-16 flex flex-col lg:flex-row items-center gap-12 overflow-x-hidden">
       <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-blue-100 to-transparent z-10 pointer-events-none"></div>
 
       <div class="lg:w-1/2 flex justify-center owner-image">
@@ -535,7 +535,7 @@ onMounted(() => {
     </section>
 
     <!-- Client-Focused Section -->
-    <section class="py-16 px-8 md:px-16 flex flex-col lg:flex-row-reverse items-center gap-12">
+    <section class="py-16 px-8 md:px-16 flex flex-col lg:flex-row-reverse items-center gap-12 overflow-x-hidden">
       <div class="lg:w-1/2 flex justify-center client-image">
         <img
           src="./assets/client2.png"
