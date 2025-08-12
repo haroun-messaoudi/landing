@@ -389,7 +389,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="bg-white text-gray-900 scroll-smooth max-w-screen">
+  <main class="bg-white text-gray-900 scroll-smooth max-w-screen overflow-x-hidden">
     <!-- Hero -->
     <header class="relative overflow-hidden bg-white">
     <!-- Brand Top Bar -->
